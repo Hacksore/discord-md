@@ -4,7 +4,7 @@ import Card from '../components/Card.astro'
 
 import { getCollection } from "astro:content";
 
-const allFeatures = await getCollection("features");
+const allFeatures = await getCollection("feature");
 ---
 
 <Layout title="Discord Markdown">
@@ -12,7 +12,7 @@ const allFeatures = await getCollection("features");
 		<h1>Discord Markdown</h1>
 		<div class="features">
 			{allFeatures.map((feature) => (
-				<Card title={feature.data.title} body={feature.data.description} href={`/features/${feature.slug}`} />
+				<Card title={feature.data.title} body={feature.data.description} href={`/feature/${feature.slug}`} />
 			))}
 		</div>
 	</main>
