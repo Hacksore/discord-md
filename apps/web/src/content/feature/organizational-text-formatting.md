@@ -1,6 +1,6 @@
 ---
 title: Organizational Text Formatting
-description: Learn how to organizational text formatting  
+description: Learn how to text formatting  
 ---
 
 ### Headers

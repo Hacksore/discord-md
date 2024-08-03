@@ -1,6 +1,6 @@
 ---
 title: Mentions
-description: Learn how to use block quotes
+description: Learn how to use mentions 
 ---
 
 Here are all the ways to mention a certain entity within discord.
