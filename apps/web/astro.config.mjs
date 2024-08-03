@@ -1,4 +1,10 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-// https://astro.build/config
-export default defineConfig({});
+// https://docs.astro.build/en/guides/markdown-content/#extending-markdown-config-from-mdx
+export default defineConfig({
+  markdown: {
+    syntaxHighlight: "prism",
+    rehypePlugins: [],
+    gfm: true,
+  },
+});
