@@ -1,0 +1,81 @@
+---
+import { SITE_IMAGE } from "../constants";
+
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalPath?: string;
+}
+
+const defaultCanonicalUrl = removeTrailingSlash(
+  new URL(Astro.url.pathname, Astro.site).toString(),
+);
+
+// Image has website default
+const { title, description, image = SITE_IMAGE, canonicalPath } = Astro.props;
+
+function removeTrailingSlash(str: string) {
+  return str.replace(/\/+$/, "");
+}
+
+const ogCacheKey = "v3";
+const ogImage = new URL(`${image}?c=${ogCacheKey}`, Astro.url);
+
+const activeCanonicalUrl = canonicalPath
+  ? new URL(canonicalPath, Astro.site).toString()
+  : defaultCanonicalUrl;
+---
+
+<head>
+  <meta charset="utf-8" />
+  <!-- Global Metadata -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+  <link rel="canonical" href={activeCanonicalUrl} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="/favicon_io/favicon.png"
+    sizes="32x32"
+  />
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="/favicon_io/favicon-16x16.png"
+    sizes="16x16"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    type="image/png"
+    href="/favicon_io/apple-touch-icon.png"
+    sizes="180x180"
+  />
+
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+  <meta name="title" content={title} />
+  <meta name="description" content={description} />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={Astro.url} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={Astro.url} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={ogImage} />
+
+</head>
