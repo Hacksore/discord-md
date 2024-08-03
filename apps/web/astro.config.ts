@@ -2,6 +2,9 @@ import { defineConfig } from "astro/config";
 import vercel from "@astrojs/vercel/static";
 
 // https://docs.astro.build/en/guides/markdown-content/#extending-markdown-config-from-mdx
+import tailwind from "@astrojs/tailwind";
+
+// https://astro.build/config
 export default defineConfig({
   site: "https://discord-md.vercel.app",
   trailingSlash: "never",
@@ -9,11 +12,12 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: "prism",
     rehypePlugins: [],
-    gfm: true,
+    gfm: true
   },
   adapter: vercel({
     webAnalytics: {
-      enabled: true,
-    },
+      enabled: true
+    }
   }),
+  integrations: [tailwind()]
 });

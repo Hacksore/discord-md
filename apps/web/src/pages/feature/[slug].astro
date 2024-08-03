@@ -16,6 +16,8 @@ const { Content } = await entry.render();
 ---
 
 <Layout title="Discord Markdown">
-  <h1>{entry.data.title}</h1>
-  <Content />
+  <div class="prose prose-invert">
+    <h1>{entry.data.title}</h1>
+    <Content />
+  </div>
 </Layout>
