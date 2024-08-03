@@ -31,7 +31,7 @@ You can use angle brackets `<>`, `#`, and the channel id.
 
 ## Emojis
 
-You can use angle brackets `<>`, ':' and emoji `name` : `id` to show up the emoji.
+You can use angle brackets `<>`, `:` and emoji `name` : `id` to show up the emoji.
 
 ```
 <:overlayed:1263836954789806154>
