@@ -8,15 +8,21 @@ const allFeatures = await getCollection("feature");
 ---
 
 <Layout title="Discord Markdown">
-	<h1>Discord Markdown</h1>
+	<h1>Explore</h1>
 	<div class="features">
 		{allFeatures.map((feature) => (
 			<Card title={feature.data.title} body={feature.data.description} href={`/feature/${feature.slug}`} />
 		))}
 	</div>
+	<a href="https://github.com/Hacksore/discord-md" target="_blank"><p>code on github</p></a>
 </Layout>
 
 <style>
+
+	a {
+		text-decoration: none;
+		color: #c1c1c1
+	}
 
 	.features {
 		display: grid;
