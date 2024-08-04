@@ -1,23 +1,44 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toHTML } from "../../markdown.js";
 
 export function Markdown({
-  value,
+  value: initialValue,
   discordCallback,
 }: {
   value: string;
-  discordCallback: any
+  discordCallback: any;
 }) {
-  const inputRef = useRef<HTMLTextAreaElement | null> (null);
-  const previewRef = useRef<HTMLDivElement | null> (null);
+  const [value, setValue] = useState(initialValue);
+  const previewRef = useRef<HTMLDivElement | null>(null);
   const [html, setHtml] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    console.log("handling")
-    setHtml(toHTML(e.target.value, { discordCallback }));
+  useEffect(() => {
+    updateHTML(value, discordCallback);
+  }, []);
+
+  const updateHTML = (value: string, options?: any) => {
+    const discordCallback = Object.keys(options).reduce(
+      (acc: any, key: string) => {
+        acc[key] = () => options[key];
+        return acc;
+      },
+      {},
+    );
+
+    const newHtml = toHTML(value, { discordCallback });
+    setHtml(newHtml);
   };
 
-  console.log(html)
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(e.target.value);
+
+    const newHtml = toHTML(e.target.value, {
+      discordCallback: {
+        user: () => "@hacksore",
+      },
+    });
+    setHtml(newHtml);
+  };
 
   return (
     <div className="grid grid-cols-2">
@@ -25,7 +46,6 @@ export function Markdown({
         value={value}
         onChange={handleChange}
         className="p-2 w-full bg-zinc-900"
-        ref={inputRef}
       />
       <div className="relative bg-zinc-900">
         <div className="absolute top-0 right-0 rounded-md text-xs bg-blue-700 p-1">

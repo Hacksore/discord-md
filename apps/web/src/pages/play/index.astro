@@ -1,7 +1,7 @@
 
 ---
 import Layout from '../../layouts/Layout.astro';
-import { Markdown } from '../../components/react/markdown.js';
+import { Markdown } from '../../components/react/markdown.tsx';
 ---
 
 <Layout title="Discord Markdown">
@@ -10,7 +10,19 @@ import { Markdown } from '../../components/react/markdown.js';
 	<Markdown 
 		client:load 
 		value="<@378293909610037252>" 
-		discordCallback={{ user: () => "@Hacksore" }}
+		discordCallback={{ user: "@Hacksore" }}
+	/>
+
+	<Markdown 
+		client:load 
+		value="<@&378293909610037252>" 
+		discordCallback={{ role: "@Mods" }}
+	/>
+
+	<Markdown 
+		client:load 
+		value="<#378293909610037252>" 
+		discordCallback={{ channel: "#some-cool-channel" }}
 	/>
 </Layout>
 
