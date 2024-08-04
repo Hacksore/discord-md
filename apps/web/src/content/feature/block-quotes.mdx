@@ -3,11 +3,13 @@ title: Block Quotes
 description: Learn how to use block quotes
 ---
 
+import { Markdown } from "../../components/react/markdown.tsx"
+
 The syntax to use Block Quotes is > or >>> followed by a space.
 
 **\>** at the beginning of a line of text, creates a single-line block quote.
 
-<Markdown value={`> this is a block quote`} />
+<Markdown client:load value={`> this is a block quote`} />
 
 **\>\>\>** at the beginning of a line of text, creates a multi-line block quote. All text from `>>>` until the end of the message will be included in the quote.
 
