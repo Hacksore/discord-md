@@ -13,7 +13,7 @@ const divId = `div-${randomId}`;
 ---
 
 <div>
-  <textarea class="w-[500px] h-[300px] bg-zinc-900" id={inputId}>
+  <textarea class="w-[500px] bg-zinc-900" id={inputId}>
     {value.trim()}
   </textarea>
   <div id={divId} set:html={content}></div>
@@ -23,17 +23,15 @@ const divId = `div-${randomId}`;
 
 // TODO: figure out how to not CDN this
 import { parse } from "https://esm.sh/marked@13.0.3";
-window.onload = () => {
-  // TODO: debounce this
-  // on key up the markdown content
+// TODO: debounce this
+// on key up the markdown content
 
-  const el = document.getElementById(inputId);
-  const display = document.getElementById(divId);
+const el = document.getElementById(inputId);
+const display = document.getElementById(divId);
 
-  el.addEventListener('keyup', (e) => {
-    const value = e.target?.value;
-    const content = parse(value);
-    display.innerHTML = content.trim();
-  });
-}
+el.addEventListener('keyup', (e) => {
+  const value = e.target?.value;
+  const content = parse(value);
+  display.innerHTML = content.trim();
+});
 </script>
