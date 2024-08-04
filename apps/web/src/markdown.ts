@@ -330,6 +330,24 @@ const bodyRules = {
       );
     },
   },
+  discordCommand: {
+    order: markdown.defaultRules.strong.order,
+    match: (source) => /^<\/([a-zA-Z]+):([0-9]+)>/.exec(source),
+    parse: function (capture) {
+      return {
+        command: capture[1],
+        id: capture[2],
+      };
+    },
+    html: function (node, output, state) {
+      return htmlTag(
+        "span",
+        `/${node.command}`,
+        { class: "discord-mention discord-command-mention" },
+        state
+      );
+    },
+  },
   discordChannel: {
     order: markdown.defaultRules.strong.order,
     match: (source) => /^<#?([0-9]*)>/.exec(source),
@@ -398,6 +416,7 @@ const bodyRules = {
 
 const discordCallbackDefaults = {
   user: (node) => "@" + markdown.sanitizeText(node.id),
+  command: (node) => `/${markdown.sanitizeText(node.command)}:${node.id}`,
   channel: (node) => "#" + markdown.sanitizeText(node.id),
   role: (node) => "@" + markdown.sanitizeText(node.id),
   everyone: () => "@everyone",
