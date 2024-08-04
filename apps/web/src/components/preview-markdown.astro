@@ -13,7 +13,7 @@ const divId = `div-${randomId}`;
 ---
 
 <div class="grid grid-cols-2">
-  <textarea class="w-full bg-zinc-900" id={inputId}>{value.trim()}</textarea>
+  <textarea class="p-2 w-full bg-zinc-900" id={inputId}>{value.trim()}</textarea>
   <div class="relative bg-zinc-900">
     <div class="absolute top-0 right-0 rounded-md text-xs bg-blue-700 p-1">Preview</div>
     <div id={divId} set:html={content}></div>

@@ -1,6 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Markdown from '../../components/preview-markdown.astro';
 import { getCollection } from 'astro:content';
+
+export const components = {
+  Markdown,
+};
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -18,6 +23,6 @@ const { Content } = await entry.render();
 <Layout title="Discord Markdown">
   <div class="prose prose-invert">
     <h1>{entry.data.title}</h1>
-    <Content />
+    <Content components={components} />
   </div>
 </Layout>
