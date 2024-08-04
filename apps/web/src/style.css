@@ -11,12 +11,12 @@
   border-radius: 0.5rem;
   border: 1px solid #333333;
   padding: 4px 6px 4px 6px;
-  background: #3a3b3d;
+  background: #18181B;
   color: #fff;
 }
 
 .prose pre {
-  background: #3a3b3d;
+  background: #18181B;
 }
 
 /* this is a hack to reset it  */
