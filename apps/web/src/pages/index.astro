@@ -8,7 +8,7 @@ const allFeatures = await getCollection("feature");
 ---
 
 <Layout title="Discord Markdown">
-	<h1 class="text-3xl mb-4">Explore</h1>
+	<h1 class="text-3xl font-bold mb-4">Explore</h1>
 	<div class="features">
 		{allFeatures.map((feature) => (
 			<Card title={feature.data.title} body={feature.data.description} href={`/feature/${feature.slug}`} />
