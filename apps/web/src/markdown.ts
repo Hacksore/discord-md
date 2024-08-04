@@ -1,3 +1,5 @@
+// TODO: covert this to typescript
+// @ts-nocheck
 import markdown from "simple-markdown";
 import highlight from "highlight.js/lib/common";
 

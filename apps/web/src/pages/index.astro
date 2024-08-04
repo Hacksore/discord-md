@@ -13,6 +13,8 @@ const allFeatures = await getCollection("feature");
 		{allFeatures.map((feature) => (
 			<Card title={feature.data.title} body={feature.data.description} href={`/feature/${feature.slug}`} />
 		))}
+
+		<Card title="Playground" body="Play with discord markdown" href="/play" />
 	</div>
 	<a href="https://github.com/Hacksore/discord-md" target="_blank"><p class="mt-4">source code</p></a>
 	<a href="https://support.discord.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline" target="_blank"><p>discord official docs</p></a>

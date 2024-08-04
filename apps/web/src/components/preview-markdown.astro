@@ -1,11 +1,12 @@
 ---
-import { marked } from 'marked';
+import { toHTML } from "../markdown.js";
 export interface Props {
   value: string;
+  discordCallback?: any 
 }
 
-const { value } = Astro.props;
-const content = marked.parse(value);
+const { value, discordCallback } = Astro.props;
+const content = toHTML(value, { discordCallback })// marked.parse(value);
 const randomId = Math.random().toString(36).substring(7);
 
 const inputId = `input-${randomId}`;
@@ -20,16 +21,15 @@ const divId = `div-${randomId}`;
   </div>
 </div>
 
-<!-- TODO: can we replace this with a plugin in remark/reyhpe ? -->
-<script type="module" define:vars={{inputId, divId}}>
-import { parse } from "https://esm.sh/marked@13.0.3";
+<script type="module" is:inline define:vars={{inputId, divId, discordCallback}}>
+import { toHTML } from "../markdown.js";
 
 const el = document.getElementById(inputId);
 const display = document.getElementById(divId);
 
 el.addEventListener('keyup', (e) => {
   const value = e.target?.value;
-  const content = parse(value);
+  const content = toHTML(value, { discordCallback });
   display.innerHTML = content.trim();
 });
 </script>
