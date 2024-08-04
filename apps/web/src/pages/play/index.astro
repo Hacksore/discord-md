@@ -2,6 +2,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Markdown from '../../components/preview-markdown.astro';
+
+const testMd = `\`\`\`js
+console.log('hello world')
+\`\`\`
+`
 ---
 
 <Layout title="Discord Markdown">
@@ -18,6 +23,9 @@ testing some md **b0ld** *italic*
 testing 2
 
   `} />
+
+	<h2>Demo 3</h2>
+  <Markdown value={testMd} />
 </Layout>
 
 <style>
