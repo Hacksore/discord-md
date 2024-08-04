@@ -1,6 +1,29 @@
-<div class="flex">
-  <textarea class="rounded-lg bg-zinc-900 p-4 text-white resize-none w-[50%] h-screen"></textarea>
-  <div class="border rounded-lg p-4 bg-zinc-900 w-[50%] h-screen">
-    <p>This is a preview of the markdown you entered.</p>
-  </div>
-</div>
+
+---
+import Layout from '../../layouts/Layout.astro';
+import Markdown from '../../components/preview-markdown.astro';
+---
+
+<Layout title="Discord Markdown">
+	<h1 class="text-3xl font-bold mb-4">Explore</h1>
+  <Markdown value={`
+testing some md **b0ld** *italic*
+
+  [not a virus.com](https://vercel.lol)
+  `} />
+
+</Layout>
+
+<style>
+
+	a {
+		text-decoration: none;
+		color: #c1c1c1
+	}
+
+	.features {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1rem;
+	}
+</style>

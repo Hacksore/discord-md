@@ -14,7 +14,7 @@ const divId = `div-${randomId}`;
 
 <div>
   <textarea class="w-[500px] h-[300px] bg-zinc-900" id={inputId}>
-    {value}
+    {value.trim()}
   </textarea>
   <div id={divId} set:html={content}></div>
 </div>
