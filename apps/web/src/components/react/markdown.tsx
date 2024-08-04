@@ -3,7 +3,7 @@ import { toHTML } from "../../markdown.js";
 
 export function Markdown({
   value: initialValue,
-  discordCallback,
+  discordCallback = {},
 }: {
   value: string;
   discordCallback: any;

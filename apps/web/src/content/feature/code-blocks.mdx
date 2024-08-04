@@ -3,13 +3,15 @@ title: Code Blocks
 description: Learn how to format code
 ---
 
+import { Markdown } from "../../components/react/markdown.tsx"
+
 Discord also supports code blocks as well.  You can make your own code blocks by wrapping your text in backticks (\`)
 
-<Markdown value={`\`In line code blocks are cool\``}/>
+<Markdown client:load value={`\`In line code blocks are cool\``}/>
 
 You can also use three backticks (\`\`\`) to create multiline code blocks, like this beautifully written haiku.
 
-<Markdown value={`\`\`\`
+<Markdown client:load value={`\`\`\`
 multi line comment
 \`\`\``}/>
 
