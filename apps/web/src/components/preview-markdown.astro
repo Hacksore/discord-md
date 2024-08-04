@@ -22,12 +22,9 @@ const divId = `div-${randomId}`;
   </div>
 </div>
 
+<!-- TODO: can we replace this with a plugin in remark/reyhpe ? -->
 <script type="module" define:vars={{inputId, divId}}>
-
-// TODO: figure out how to not CDN this
 import { parse } from "https://esm.sh/marked@13.0.3";
-// TODO: debounce this
-// on key up the markdown content
 
 const el = document.getElementById(inputId);
 const display = document.getElementById(divId);
