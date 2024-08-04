@@ -12,11 +12,14 @@ const inputId = `input-${randomId}`;
 const divId = `div-${randomId}`;
 ---
 
-<div>
-  <textarea class="w-[500px] bg-zinc-900" id={inputId}>
+<div class="grid grid-cols-2">
+  <textarea class="w-full bg-zinc-900" id={inputId}>
     {value.trim()}
   </textarea>
-  <div id={divId} set:html={content}></div>
+  <div class="relative">
+    <div class="absolute top-0 right-0 rounded-md text-xs bg-blue-700 p-1">Preview</div>
+    <div id={divId} set:html={content}></div>
+  </div>
 </div>
 
 <script type="module" define:vars={{inputId, divId}}>
