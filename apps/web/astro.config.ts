@@ -14,7 +14,6 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: "https://discord-md.vercel.app",
   trailingSlash: "never",
-  output: "static",
   markdown: {
     shikiConfig: {
       theme: "github-dark-dimmed"
