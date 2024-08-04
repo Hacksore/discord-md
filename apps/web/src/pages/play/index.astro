@@ -2,6 +2,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Markdown from '../../components/preview-markdown.astro';
+import { toHTML } from "../../markdown.js";
 
 const testMd = `\`\`\`js
 console.log('hello world')
@@ -11,6 +12,33 @@ console.log('hello world')
 
 <Layout title="Discord Markdown">
 	<h1 class="text-3xl font-bold mb-4">Explore</h1>
+
+	<div set:html={toHTML("<@378293909610037252>", {
+		discordCallback: {
+			user: () => {
+				return "@Hacksore"
+			}
+		}
+	})} />
+
+	<div set:html={toHTML("@everyone")} />
+
+	<div set:html={toHTML("<@&378293909610037252>", {
+		discordCallback: {
+			role: () => {
+				return "@Mods"
+			}
+		}
+	})} />
+
+	<div set:html={toHTML("<#378293909610037252>", {
+		discordCallback: {
+			channel: () => {
+				return "#Gaming"
+			}
+		}
+	})} />
+
 	<h2>Demo 1</h2>
   <Markdown value={`
 testing some md **b0ld** *italic*
@@ -26,6 +54,13 @@ testing 2
 
 	<h2>Demo 3</h2>
   <Markdown value={testMd} />
+
+	<h2>Discord special sauce</h2>
+  <Markdown value={`<@378293909610037252>`} />
+		<hr />
+	<Markdown value="</info:905987126099836938>" />
+	<hr />
+	<Markdown value="</info:905987126099836938>" />
 </Layout>
 
 <style>
