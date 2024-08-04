@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import vercel from "@astrojs/vercel/static";
-
+import mdx from '@astrojs/mdx';
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
@@ -40,5 +40,5 @@ export default defineConfig({
       enabled: true,
     },
   }),
-  integrations: [tailwind()],
+  integrations: [tailwind(), mdx()],
 });
