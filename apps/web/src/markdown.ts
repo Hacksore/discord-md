@@ -412,6 +412,92 @@ const bodyRules = {
       );
     },
   },
+  discordBrowseChannels: {
+    order: markdown.defaultRules.strong.order,
+    match: (source) => /^<?(id:browse)>/.exec(source),
+    parse: function (capture) {
+      return {
+        id: capture[1],
+      };
+    },
+    html: function (node, output, state) {
+      return htmlTag(
+        "span",
+        "Browse Channels",
+        { class: "discord-mention" },
+        state
+      );
+    },
+  },
+  discordChannelsAndRoles: {
+    order: markdown.defaultRules.strong.order,
+    match: (source) => /^<?(id:customize)>/.exec(source),
+    parse: function (capture) {
+      return {
+        id: capture[1],
+      };
+    },
+    html: function (node, output, state) {
+      return htmlTag(
+        "span",
+        "Channels and Roles",
+        { class: "discord-mention" },
+        state
+      );
+    },
+  },
+  discordServerHome: {
+    order: markdown.defaultRules.strong.order,
+    match: (source) => /^<?(id:info|id:guide)>/.exec(source),
+    parse: function (capture) {
+      return {
+        id: capture[1],
+      };
+    },
+    html: function (node, output, state) {
+      return htmlTag(
+        "span",
+        "Server Guide",
+        { class: "discord-mention discord-server-home" },
+        state
+      );
+    },
+  },
+  discordSlashCommand: {
+    order: markdown.defaultRules.strong.order,
+    match: (source) => /^<\/(.*):([0-9]*)>/.exec(source),
+    parse: function (capture) {
+      return {
+        id: capture[1],
+      };
+    },
+    html: function (node, output, state) {
+      return htmlTag(
+        "span",
+        state.discordCallback.slashCommand(node),
+        { class: "discord-mention discord-role-mention" },
+        state
+      );
+    },
+  },
+
+  discordEmoji: {
+    order: markdown.defaultRules.strong.order,
+    match: (source) => /^<:(.*):([0-9]*)>/.exec(source),
+    parse: function (capture) {
+      return {
+        id: capture[1],
+      };
+    },
+    html: function (node, output, state) {
+      return htmlTag(
+        "span",
+        state.discordCallback.emoji(node),
+        { class: "" },
+        state
+      );
+    },
+  },
 };
 
 const discordCallbackDefaults = {
@@ -419,6 +505,8 @@ const discordCallbackDefaults = {
   command: (node) => `/${markdown.sanitizeText(node.command)}:${node.id}`,
   channel: (node) => "#" + markdown.sanitizeText(node.id),
   role: (node) => "@" + markdown.sanitizeText(node.id),
+  slashCommand: (node) => "/" + markdown.sanitizeText(node.id),
+  emoji: (node) => "🚀",
   everyone: () => "@everyone",
   here: () => "@here",
 };

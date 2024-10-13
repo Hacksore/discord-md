@@ -36,7 +36,22 @@
   cursor: pointer;
 }
 
+.discord-spoiler {
+  color: black;
+  background: black;
+}
+
+/* TODO: makei t so you click on this*/
+.discord-spoiler:hover {
+  color: white;
+  background: transparent;
+}
+
 .discord-mention:hover {
   color: #fff;
   background-color: hsl(235, 85.6%, 64.7%);
+}
+
+.discord-server-home {
+  /* TODO: put the icon  */
 }

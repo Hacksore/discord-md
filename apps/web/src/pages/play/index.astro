@@ -5,31 +5,17 @@ import { Markdown } from '../../components/react/markdown.tsx';
 ---
 
 <Layout title="Discord Markdown">
-	<h1 class="text-3xl font-bold mb-4">Explore</h1>
+	<h1 class="text-3xl font-bold mb-4">Playground</h1>
 
 	<Markdown 
 		client:load 
-		value="<@378293909610037252>" 
-		discordCallback={{ user: "@Hacksore" }}
-	/>
-
-	<Markdown 
-		client:load 
-		value="<@&378293909610037252>" 
-		discordCallback={{ role: "@Mods" }}
-	/>
-
-	<Markdown 
-		client:load 
-		value="<#378293909610037252>" 
-		discordCallback={{ channel: "#some-cool-channel" }}
-	/>
-
-	<Markdown 
-		client:load 
-		value="</info:905987126099836938>" 
-		discordCallback={{ command: "/info" }}
-	/>
+	>
+    {"<@378293909610037252>"}
+    {"info: <id:info>"}
+    {"guide: <id:guide>"}
+    {"browse: <id:browse>"}
+    {"customize: <id:customize>"}
+  </Markdown>
 </Layout>
 
 <style>

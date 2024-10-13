@@ -3,36 +3,46 @@ title: Mentions
 description: Learn how to use mentions 
 ---
 
+import { Markdown } from '../../components/react/markdown.tsx';
+
 Here are all the ways to mention a certain entity within discord.
 
 ## Users
 
 You can use angle brackets `<>`, `@`, and the users id.
 
-```
-<@378293909610037252>
-```
+<Markdown 
+  client:load 
+  value="<@378293909610037252>" 
+  discordCallback={{ user: "@Hacksore" }}
+/>
 
 ## Roles
 
 You can use angle brackets `<>`, `@&`, and the roles id.
 
-```
-<@&987915850038280216>
-```
+<Markdown 
+  client:load 
+  value="<@&378293909610037252>" 
+  discordCallback={{ role: "@Mods" }}
+/>
 
 ## Channels
 
 You can use angle brackets `<>`, `#`, and the channel id.
 
-```
-<#1069332468932554962>
-```
+<Markdown 
+  client:load 
+  value="<#378293909610037252>" 
+  discordCallback={{ channel: "#some-cool-channel" }}
+/>
 
 ## Emojis
 
 You can use angle brackets `<>`, `:` and emoji `name` : `id` to show up the emoji.
 
-```
-<:overlayed:1263836954789806154>
-```
+<Markdown 
+  client:load 
+  value="<:overlayed:1263836954789806154>"
+  discordCallback={{ emoji: "💎" }}
+/>

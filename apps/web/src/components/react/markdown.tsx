@@ -1,22 +1,28 @@
 import { useEffect, useRef, useState } from "react";
 import { toHTML } from "../../markdown.js";
+import { decode } from "html-entities";
 
 export function Markdown({
   value: initialValue,
   discordCallback = {},
+  children = ""
 }: {
-  value: string;
-  discordCallback: any;
+  value?: string;
+  discordCallback?: any;
+  children?: any
 }) {
-  const [value, setValue] = useState(initialValue);
+
+  const valuePropOrChildren = initialValue ?? decode(children.props.value.trim());
+
+  const [value, setValue] = useState(valuePropOrChildren);
   const previewRef = useRef<HTMLDivElement | null>(null);
   const [html, setHtml] = useState("");
 
   useEffect(() => {
     updateHTML(value, discordCallback);
-  }, []);
+  }, [value]);
 
-  const updateHTML = (value: string, options?: any) => {
+  const updateHTML = (value: string, options: any) => {
     const discordCallback = Object.keys(options).reduce(
       (acc: any, key: string) => {
         acc[key] = () => options[key];
@@ -31,13 +37,6 @@ export function Markdown({
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
-
-    const newHtml = toHTML(e.target.value, {
-      discordCallback: {
-        user: () => "@hacksore",
-      },
-    });
-    setHtml(newHtml);
   };
 
   return (
@@ -47,11 +46,12 @@ export function Markdown({
         onChange={handleChange}
         className="p-2 w-full bg-zinc-900"
       />
-      <div className="relative bg-zinc-900">
-        <div className="absolute top-0 right-0 rounded-md text-xs bg-blue-700 p-1">
+      <div className="flex bg-zinc-900">
+        <div className="flex-grow p-2" ref={previewRef} dangerouslySetInnerHTML={{ __html: html }}></div>
+
+        <div className="rounded-md h-6 text-xs bg-blue-900 font-bold p-1">
           Preview
         </div>
-        <div ref={previewRef} dangerouslySetInnerHTML={{ __html: html }}></div>
       </div>
     </div>
   );
